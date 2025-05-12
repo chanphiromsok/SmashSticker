@@ -40,14 +40,6 @@
         {
           "launchMode": "most-recent"
         }
-      ],
-      [
-        "expo-font",
-        {
-          "fonts": [
-            "./node_modules/@react-native-vector-icons/Lucide/fonts/Lucide.ttf"
-          ]
-        }
       ]
     ],
     "experiments": {

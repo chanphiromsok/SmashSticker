@@ -1,35 +1,37 @@
-import { FlatList, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { FlatList, StyleSheet, useWindowDimensions, View } from "react-native";
 
-import Lucide from "@react-native-vector-icons/lucide";
-import LucideGlyphmap from "@react-native-vector-icons/lucide/glyphmaps/Lucide.json";
+import MaterialSymbols from "@react-native-vector-icons/material-symbols";
+import MaterialSymbolsGlyphmap from "@react-native-vector-icons/material-symbols/glyphmaps/MaterialSymbols.json";
 
-const colors =["red", "blue","green","yello" ,"#F6F666"]
+const colors = ["red", "blue", "green", "yello", "#F6F666"];
 export default function HomeScreen() {
   const { width } = useWindowDimensions();
-  const numOfCols = 6
-  const iconsSize = width / numOfCols
+  const numOfCols = 6;
+  const iconsSize = width / numOfCols;
   return (
     <FlatList
-      data={Object.keys(LucideGlyphmap)}
-      windowSize={9}
+      data={Object.keys(MaterialSymbolsGlyphmap)}
       numColumns={numOfCols}
-      maxToRenderPerBatch={5}
-      updateCellsBatchingPeriod={250}
-      renderItem={({ item }) => {
-        return <View style={{margin:10}}>
-          <Lucide name={item} size={iconsSize - 6} />
-        </View>
+      removeClippedSubviews
+      renderItem={({ item, index }) => {
+        return (
+          <View style={{ margin: 10 }}>
+            <MaterialSymbols
+              color={index < 3 ? "red" : "black"}
+              name={item as keyof typeof MaterialSymbolsGlyphmap}
+              size={iconsSize - 6}
+            />
+          </View>
+        );
       }}
     />
-
-
   );
 }
 
 const styles = StyleSheet.create({
   titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 8,
   },
   stepContainer: {
@@ -41,7 +43,6 @@ const styles = StyleSheet.create({
     width: 290,
     bottom: 0,
     left: 0,
-    position: 'absolute',
+    position: "absolute",
   },
 });
-
